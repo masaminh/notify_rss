@@ -28,7 +28,7 @@ jobs:
       - name: Download file from S3
         env:
           CDK_CONTEXT_JSON_URI: ${{ secrets.CDK_CONTEXT_JSON_URI }}
-        run: aws s3 cp $CDK_CONTEXT_JSON_URI ./  --quiet
+        run: aws s3 cp $CDK_CONTEXT_JSON_URI ./
       - name: Test
         run: npm t
       - name: Deploy

@@ -1,10 +1,30 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { NotifySchoolV2Stack } from '../lib/notify_school_v2-stack';
+import { NotifyRssStack } from '../lib/notify_rss-stack';
 
 const app = new cdk.App();
-new NotifySchoolV2Stack(app, 'NotifySchoolV2Stack', {
+
+function getContext(name: string): string {
+  const context = app.node.tryGetContext(name);
+
+  if (typeof context !== 'string') {
+    throw Error(`context value "${context}" type is not string`);
+  }
+
+  return context;
+}
+
+const rssUrl = getContext('rssUrl');
+const queueArn = getContext('queueArn');
+const webhookName = getContext('webhookName');
+const stackName = getContext('stackName');
+
+// eslint-disable-next-line no-new
+new NotifyRssStack(app, stackName, {
+  rssUrl,
+  queueArn,
+  webhookName,
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

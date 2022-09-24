@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/notify_school_v2.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/notify_rss.ts",
   "watch": {
     "include": [
       "**"

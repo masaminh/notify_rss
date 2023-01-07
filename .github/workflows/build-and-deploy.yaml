@@ -38,4 +38,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Deploy
         if: startsWith(github.ref, 'refs/heads/main')
-        run: npm run cdk -- deploy
+        run: npm run cdk -- deploy --require-approval never

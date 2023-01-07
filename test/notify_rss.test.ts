@@ -19,6 +19,9 @@ describe('CDK Stack', () => {
     template.hasResourceProperties('AWS::DynamoDB::Table', {});
     template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
       StateMachineType: 'EXPRESS',
+      LoggingConfiguration: {
+        Level: 'ALL',
+      },
     });
     template.hasResourceProperties('AWS::Events::Rule', {});
   });

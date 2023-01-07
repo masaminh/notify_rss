@@ -81,6 +81,7 @@ export class NotifyRssStack extends Stack {
     });
 
     const stateMachine = new sfn.StateMachine(this, `${id}-StateMachine`, {
+      stateMachineType: sfn.StateMachineType.EXPRESS,
       definition: stateGetLastUpdateTime.next(
         new sfn.Choice(this, 'JudgeExistanceOfLastUpdateTime')
           .when(

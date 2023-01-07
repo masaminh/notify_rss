@@ -101,6 +101,12 @@ export class NotifyRssStack extends Stack {
             ).next(stateSetLastUpdateTime),
           )),
       ),
+      logs: {
+        destination: new logs.LogGroup(this, 'StateMachineLogGroup', {
+          retention: logs.RetentionDays.ONE_MONTH,
+        }),
+        level: sfn.LogLevel.ALL,
+      },
     });
 
     // eslint-disable-next-line no-new
